@@ -308,146 +308,14 @@ export class GameEngine {
     ctx.translate(x, y);
     ctx.rotate((this.carRotation * Math.PI) / 180);
 
-    // Use SVG image if loaded
+    // Draw PNG image with glow effect
     if (this.carImage) {
-      // Draw SVG with color tint using CSS filter
       ctx.filter = `drop-shadow(0 0 25px ${carColor}) drop-shadow(0 0 10px ${carColor})`;
       ctx.globalAlpha = 1;
       ctx.drawImage(this.carImage, -125, -125, 250, 250);
       ctx.filter = "none";
-    } else {
-      // Fallback to canvas drawing if SVG not loaded
-      this.drawF1CarFallback(ctx, carColor);
     }
 
     ctx.restore();
-  }
-
-  drawF1CarFallback(ctx, carColor) {
-    // Fallback canvas drawing (original implementation)
-    // ===== CHASSIS (Top-down view) =====
-    ctx.fillStyle = carColor;
-    ctx.shadowColor = carColor;
-    ctx.shadowBlur = 25;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 0;
-
-    // Main chassis - tapered front
-    ctx.beginPath();
-    ctx.moveTo(-18, -12); // Top left
-    ctx.lineTo(18, -12); // Top right
-    ctx.lineTo(22, 0); // Right point (afilado)
-    ctx.lineTo(18, 12); // Bottom right
-    ctx.lineTo(-18, 12); // Bottom left
-    ctx.lineTo(-20, 0); // Left point
-    ctx.closePath();
-    ctx.fill();
-
-    // ===== COCKPIT (pilot area) =====
-    ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
-    ctx.beginPath();
-    ctx.arc(0, -4, 8, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Cockpit inner detail
-    ctx.fillStyle = "rgba(50, 50, 100, 0.7)";
-    ctx.beginPath();
-    ctx.arc(0, -4, 5, 0, Math.PI * 2);
-    ctx.fill();
-
-    // ===== FRONT WING (frontal aerofólio) =====
-    ctx.fillStyle = carColor;
-    ctx.globalAlpha = 0.9;
-    ctx.beginPath();
-    ctx.moveTo(-14, -18); // Left
-    ctx.lineTo(14, -18); // Right
-    ctx.lineTo(16, -22); // Right apex
-    ctx.lineTo(-16, -22); // Left apex
-    ctx.closePath();
-    ctx.fill();
-
-    // Front wing glow
-    ctx.strokeStyle = carColor;
-    ctx.lineWidth = 2;
-    ctx.globalAlpha = 0.6;
-    ctx.stroke();
-
-    // ===== REAR WING (traseiro - maior) =====
-    ctx.fillStyle = carColor;
-    ctx.globalAlpha = 0.8;
-    ctx.beginPath();
-    ctx.moveTo(-16, 18); // Left
-    ctx.lineTo(16, 18); // Right
-    ctx.lineTo(18, 26); // Right apex
-    ctx.lineTo(-18, 26); // Left apex
-    ctx.closePath();
-    ctx.fill();
-
-    // Rear wing support
-    ctx.strokeStyle = carColor;
-    ctx.lineWidth = 1.5;
-    ctx.globalAlpha = 0.5;
-    ctx.beginPath();
-    ctx.moveTo(-8, 18);
-    ctx.lineTo(-8, 26);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(8, 18);
-    ctx.lineTo(8, 26);
-    ctx.stroke();
-
-    // ===== WHEELS (4 pneus) =====
-    ctx.globalAlpha = 1;
-
-    // Front left wheel
-    ctx.fillStyle = "#1a1a1a";
-    ctx.beginPath();
-    ctx.ellipse(-13, -10, 7, 5, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Front right wheel
-    ctx.beginPath();
-    ctx.ellipse(13, -10, 7, 5, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Rear left wheel
-    ctx.beginPath();
-    ctx.ellipse(-13, 10, 7, 5, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Rear right wheel
-    ctx.beginPath();
-    ctx.ellipse(13, 10, 7, 5, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Wheel rims (bright inner circle)
-    ctx.strokeStyle = carColor;
-    ctx.lineWidth = 2;
-    ctx.globalAlpha = 0.7;
-
-    for (let wheel of [
-      [-13, -10],
-      [13, -10],
-      [-13, 10],
-      [13, 10],
-    ]) {
-      ctx.beginPath();
-      ctx.arc(wheel[0], wheel[1], 4, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-
-    // ===== NEON GLOW EFFECT =====
-    ctx.globalAlpha = 0.4;
-    ctx.strokeStyle = carColor;
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo(-22, 0);
-    ctx.lineTo(-20, -14);
-    ctx.lineTo(20, -14);
-    ctx.lineTo(22, 0);
-    ctx.lineTo(20, 14);
-    ctx.lineTo(-20, 14);
-    ctx.closePath();
-    ctx.stroke();
   }
 }
