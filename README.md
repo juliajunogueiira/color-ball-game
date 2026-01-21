@@ -187,7 +187,6 @@ POINTS_WRONG: -50,    // Penalidade por errar
 - Certifique-se de que o backend está rodando em `http://localhost:5000`
 - Verifique se há erros de CORS
 - O jogo funciona offline - pontuações são salvas localmente
-- No celular, use IP local: `http://192.168.1.5:3000`
 
 **Porta 5000 já está em uso?**
 
