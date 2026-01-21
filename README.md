@@ -1,24 +1,26 @@
 # Color Ball Game - Arcade Neon
 
-Um jogo arcade em tempo real construído com **React (Vite)** no frontend e **Node.js (Express)** no backend. O objetivo é acertar bolas que descem da tela usando um canhão que dispara projéteis da mesma cor.
+Um jogo arcade em tempo real construído com **React (Vite)** no frontend e **Node.js (Express)** no backend. Controle um carro F1 de 250x250 pixels para capturar bolas coloridas que descem do topo em 5 níveis progressivos.
 
 ## 🎮 Características
 
-- **15 Níveis Progressivos**:
-  - Níveis 1-5 (Fácil): 3 cores, velocidade baixa
-  - Níveis 6-10 (Médio): 5 cores, velocidade moderada
-  - Níveis 11-15 (Difícil): 7 cores, velocidade alta com movimento em zigue-zague
+- **5 Níveis Progressivos**:
+  - Níveis 1-2 (Muito Fácil): 3 cores, velocidade baixa (1.2-1.4), muitos segundos entre bolas
+  - Níveis 3-4 (Fácil): 3 cores, velocidade moderada (1.8-2.2), menos tempo de espera
+  - Nível 5 (Normal): 3 cores, velocidade 2.6
 
 - **Mecânica do Jogo**:
-  - Bolas coloridas descem continuamente do topo
-  - Canhão controlado com mouse ou teclado (setas/A-D)
-  - Clique para disparar projéteis
-  - Acerte a cor certa para ganhar 100 pontos
+  - Bolas coloridas descem do **centro da tela** (não dos cantos)
+  - Carro F1 (imagem PNG 250x250) controlado com mouse ou teclado (setas/A-D)
+  - Carro se move suavemente de parede a parede
+  - Acerte a cor certa do carro para ganhar 100 pontos
   - Erre ou deixe a bola chegar à base para perder 1 vida
+  - Sistema de 3 vidas
 
 - **Estilização**:
   - Visual neon/arcade moderno
-  - Efeitos de glow em todos os elementos
+  - Carro F1 renderizado como imagem PNG
+  - Efeitos de glow dinâmicos nas cores
   - Interface responsiva
   - Animações suaves
 
@@ -68,12 +70,13 @@ npm run dev
 
 1. **Tela de Menu**: Clique em "START GAME" para começar
 2. **Controles**:
-   - 🖱️ Mova o canhão com o mouse
+   - 🖱️ Mova o carro (F1) com o mouse
    - ⌨️ Ou use as setas do teclado (← / →) ou A / D
-   - 🖱️ Clique para disparar
-3. **Objetivo**: Acerte as bolas com a cor correspondente do projétil
+   - O carro muda de cor dinamicamente a cada nível
+3. **Objetivo**: Acerte as bolas coloridas com a cor correspondente do carro
 4. **Vidas**: Você começa com 3 vidas
-5. **Progressão**: Complete os níveis para enfrentar desafios maiores
+5. **Progressão**: Complete os 5 níveis para vencer o jogo!
+6. **Dica**: As bolas aparecem no centro da tela, não nos cantos
 
 ## 🏗️ Arquitetura do Projeto
 
@@ -147,30 +150,71 @@ export const LEVELS = {
 };
 ```
 
-### Ajustar Dificuldade
+### Ajustar Dificuldade dos Níveis
 
-Modifique `speed`, `spawnRate` e `ballSize` em `gameConfig.js`
+Modifique `speed` e `spawnRate` em `gameConfig.js`:
+
+- `speed`: velocidade das bolas (menor = mais fácil)
+- `spawnRate`: tempo em ms entre spawns (maior = mais fácil)
+
+### Ajustar Tamanho do Carro
+
+Edite em `frontend/src/utils/gameEngine.js`, método `drawF1Car()`:
+
+```javascript
+ctx.drawImage(this.carImage, -125, -125, 250, 250); // Altere 250, 250
+```
 
 ### Mudar Pontuação
 
-Ajuste `POINTS_CORRECT` e `POINTS_WRONG` em `GAME_CONFIG`
+Ajuste em `GAME_CONFIG` em `gameConfig.js`:
+
+```javascript
+POINTS_CORRECT: 100,  // Pontos por acertar
+POINTS_WRONG: -50,    // Penalidade por errar
+```
+
+### Adicionar Mais Níveis
+
+1. Adicione novos níveis em `LEVELS` em `gameConfig.js`
+2. Atualize `MAX_LEVEL` para o novo número
+3. Atualize referências a "5" no frontend para o novo máximo
 
 ## 🐛 Troubleshooting
 
 **Jogo não conecta ao backend?**
 
 - Certifique-se de que o backend está rodando em `http://localhost:5000`
-- Verifique se não há erros de CORS
-- O jogo funciona offline, usando localStorage como fallback
+- Verifique se há erros de CORS
+- O jogo funciona offline - pontuações são salvas localmente
+- No celular, use IP local: `http://192.168.1.5:3000`
+
+**Porta 5000 já está em uso?**
+
+- Windows: `netstat -ano | findstr :5000` para encontrar PID
+- Então: `taskkill /PID <numero> /F`
+- Reinicie com `node server.js`
+
+**Imagem do carro não aparece?**
+
+- Verifique se `carrace.png` está em `frontend/src/styles/`
+- Caminho esperado no código: `/src/styles/carrace.png`
+- Tamanho esperado: 250x250 pixels
 
 **Vite não encontra as dependências?**
 
 - Delete `node_modules` e `package-lock.json`
-- Execute `npm install` novamente
+- Execute `npm install` novamente em `frontend/` e `backend/`
 
-**Canvas muito lento?**
+**Bolas aparecem nos cantos em vez do centro?**
 
-- Reduza a qualidade dos efeitos gráficos
+- Verifique `spawnBall()` em `gameEngine.js`
+- Deve usar: `(canvasWidth - centerWidth) / 2` para centralizar
+
+**Canvas muito lento ou com lag?**
+
+- Reduza `spawnRate` (tempo maior entre spawns)
+- Diminua o número de partículas nos efeitos visuais
 - Feche outras abas/programas
 
 ## 📊 Sistema de Pontuação
