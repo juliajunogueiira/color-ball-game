@@ -231,10 +231,6 @@ POINTS_WRONG: -50,    // Penalidade por errar
 - [ ] Power-ups (mais vida, disparo rápido)
 - [ ] Banco de dados real (MongoDB/PostgreSQL)
 
-## 📄 Licença
-
-Este projeto é open-source e pode ser usado livremente.
-
 ---
 
 **Desenvolvido com ❤️ e muita glow neon ✨**
