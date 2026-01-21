@@ -1,0 +1,163 @@
+.game-ui {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(90deg, rgba(0, 255, 0, 0.05), rgba(255, 0, 128, 0.05));
+    border: 2px solid #00ff0033;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.ui-stats {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ui-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    border: 2px solid #00ff0066;
+    border-radius: 8px;
+    background: rgba(0, 255, 0, 0.05);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ui-item:hover {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    border-color: #00ff00;
+}
+
+.ui-item .label {
+    font-size: 12px;
+    font-weight: 400;
+    color: #00ff0099;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.ui-item .value {
+    font-size: 24px;
+    font-weight: 900;
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff0080;
+    animation: neonGlow 2s ease-in-out infinite;
+}
+
+.ui-item.score .value {
+    color: #ffff00;
+    text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff0080;
+}
+
+.ui-item.level .value {
+    color: #ff0080;
+    text-shadow: 0 0 10px #ff0080, 0 0 20px #ff008080;
+}
+
+.ui-item.high-score .value {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff80;
+}
+
+.ui-item.lives .value {
+    font-size: 20px;
+    letter-spacing: 3px;
+}
+
+.game-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.control-btn {
+    width: 45px;
+    height: 45px;
+    border: 2px solid #ff0080;
+    border-radius: 8px;
+    background: rgba(255, 0, 128, 0.15);
+    color: #ff0080;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 0, 128, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    background: rgba(255, 0, 128, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.6);
+    border-color: #ff0080;
+    transform: scale(1.1);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.pause-btn {
+    border-color: #00ffff;
+    color: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.pause-btn:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+    background: rgba(0, 255, 255, 0.3);
+}
+
+.restart-btn {
+    border-color: #ffff00;
+    color: #ffff00;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+}
+
+.restart-btn:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+    background: rgba(255, 255, 0, 0.3);
+}
+
+.quit-btn {
+    border-color: #ff0055;
+    color: #ff0055;
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.3);
+}
+
+.quit-btn:hover {
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.6);
+    background: rgba(255, 0, 85, 0.3);
+}
+
+@media (max-width: 768px) {
+    .game-ui {
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .ui-item {
+        padding: 8px 15px;
+    }
+
+    .ui-item .value {
+        font-size: 18px;
+    }
+
+    .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}

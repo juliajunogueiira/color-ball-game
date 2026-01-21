@@ -1,0 +1,49 @@
+<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Car Body -->
+  <defs>
+    <style>
+      .car-body { fill: currentColor; }
+      .car-window { fill: rgba(255, 255, 255, 0.8); }
+      .car-wheel { fill: #1a1a1a; }
+      .car-rim { fill: none; stroke: currentColor; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <!-- Front bumper/wing -->
+  <rect x="35" y="8" width="30" height="6" rx="2" class="car-body"/>
+  
+  <!-- Main chassis -->
+  <path d="M 35 14 L 65 14 L 68 30 L 32 30 Z" class="car-body"/>
+  
+  <!-- Cockpit -->
+  <circle cx="50" cy="20" r="8" class="car-window"/>
+  <circle cx="50" cy="20" r="5" fill="rgba(50, 50, 100, 0.7)"/>
+  
+  <!-- Rear wing -->
+  <rect x="32" y="32" width="36" height="8" rx="2" class="car-body"/>
+  
+  <!-- Rear wing supports -->
+  <line x1="42" y1="32" x2="42" y2="40" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+  <line x1="58" y1="32" x2="58" y2="40" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Front left wheel -->
+  <ellipse cx="40" cy="28" rx="6" ry="4" class="car-wheel"/>
+  <ellipse cx="40" cy="28" rx="4" ry="3" class="car-rim"/>
+
+  <!-- Front right wheel -->
+  <ellipse cx="60" cy="28" rx="6" ry="4" class="car-wheel"/>
+  <ellipse cx="60" cy="28" rx="4" ry="3" class="car-rim"/>
+
+  <!-- Rear left wheel -->
+  <ellipse cx="40" cy="34" rx="6" ry="4" class="car-wheel"/>
+  <ellipse cx="40" cy="34" rx="4" ry="3" class="car-rim"/>
+
+  <!-- Rear right wheel -->
+  <ellipse cx="60" cy="34" rx="6" ry="4" class="car-wheel"/>
+  <ellipse cx="60" cy="34" rx="4" ry="3" class="car-rim"/>
+
+  <!-- Neon glow effect -->
+  <g opacity="0.4" stroke="currentColor" stroke-width="2" fill="none">
+    <path d="M 32 30 L 32 14 L 65 14 L 68 30 L 65 40 L 35 40 Z"/>
+  </g>
+</svg>

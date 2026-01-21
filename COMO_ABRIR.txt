@@ -1,0 +1,74 @@
+🎮 COMO ABRIR O JOGO - INSTRUÇÕES SIMPLES
+
+1️⃣ WINDOWS
+   Duplo-clique em: start.bat
+   
+   ⏳ Aguarde 10 segundos (vai abrir 2 janelas)
+   ✅ Backend: http://localhost:5000 (janela 1)
+   ✅ Frontend: http://localhost:3000 (janela 2)
+   
+   🎮 O jogo será aberto automaticamente no navegador
+
+---
+
+2️⃣ MACOS / LINUX
+   Abra o Terminal e execute:
+   
+   cd ~/OneDrive/Área\ de\ Trabalho/task-app
+   ./start.sh
+   
+   ⏳ Aguarde 10 segundos
+   🎮 O jogo abrirá em http://localhost:3000
+
+---
+
+3️⃣ NÃO CONSEGUE ABRIR?
+
+   Tente abrir manualmente em 2 TERMINAIS:
+
+   TERMINAL 1:
+   cd "c:\Users\nogue\OneDrive\Área de Trabalho\task-app\backend"
+   npm install
+   npm start
+   
+   (Você verá: ✅ Server running on http://localhost:5000)
+
+   TERMINAL 2:
+   cd "c:\Users\nogue\OneDrive\Área de Trabalho\task-app\frontend"
+   npm install
+   npm run dev
+   
+   (Você verá: ➜ Local: http://localhost:3000/)
+
+   Depois abra o navegador:
+   http://localhost:3000
+
+---
+
+4️⃣ PROBLEMAS?
+
+   ❌ Porta 5000 em uso?
+   Mude em: backend/server.js
+   const PORT = 8000; (ao invés de 5000)
+
+   ❌ Porta 3000 em uso?
+   Mude em: frontend/vite.config.js
+   port: 3001, (ao invés de 3000)
+
+   ❌ npm install com erro?
+   npm cache clean --force
+   npm install
+
+---
+
+5️⃣ COMO JOGAR
+
+   • Mova o canhão com o MOUSE
+   • Clique para DISPARAR
+   • Acerte a BOLA da mesma COR do projétil
+   • 15 níveis de dificuldade crescente
+   • 3 vidas por partida
+
+---
+
+🚀 Pronto! Jogue e divirta-se! 🎮✨
