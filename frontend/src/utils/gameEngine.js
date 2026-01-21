@@ -251,9 +251,12 @@ export class GameEngine {
   }
 
   handleMouseMove(x, y) {
-    // Store mouse position (not used in current implementation but kept for compatibility)
+    // Move the car to follow the mouse position
     this.mouseX = x;
     this.mouseY = y;
+    // Keep car within bounds: 125 to canvasWidth - 125
+    const constrainedX = Math.max(125, Math.min(this.canvasWidth - 125, x));
+    this.cannon.setPosition(constrainedX);
   }
 
   handleMouseClick() {
